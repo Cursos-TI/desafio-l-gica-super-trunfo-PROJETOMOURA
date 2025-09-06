@@ -5,8 +5,9 @@ int main(){
     int populacao1, populacao2, turistico1, turistico2, atributo1, atributo2;
     float area1, area2, pib1, pib2, densidade1,densidade2, pib_percapita1, pib_percapita2;
     float resultado1, resultado2;
-    char opcao;   
+    char opcao; 
 
+//Para facilitar o jogo e torná-lo mais rápido foi atribuído valores as variáveis
 populacao1 = 680000;
 area1 = 1200.5;
 pib1 = 78.4;
@@ -21,6 +22,8 @@ turistico2 = 50;
 densidade2 = (float)populacao2 / area2;
 pib_percapita2 = pib2 * 1000000000 / (float)populacao2;
 
+//início do jogo. Menu interativo em que o jogador, em primeiro lugar, 
+//escolhe com qual carta ele vai jogar, se Carta 1 ou Carta 2
    
     printf("\n<<<< Bem-Vindo ao Jogo >>>\n");
  
@@ -29,11 +32,18 @@ pib_percapita2 = pib2 * 1000000000 / (float)populacao2;
     printf("\nEscolha sua Carta: ");
     scanf("%c", &opcao);
 
+//Ápos a escolha da Carta o próximo menu permite a escolha de dois atributos que serão comparados
+//Se os atributos escolhidos forem iguais, o jogo se encerra.
+// caso seja escolhido a carta 1 será aberto o menu dos atributos da Carta 1 que será comparado a Carta 2
+// após será exibido a mensagem de vitória, perda ou empate, conforme o caso.
+
+
     switch (opcao){
     case 'a':
     case 'A':
         printf("Você escolheu a Carta 1\n");
         printf("\nEscolha os Atributos\n");
+        printf("não é permitido escolher atributos iguais\n");
         printf("(1) População\n");
         printf("(2) Área total\n");
         printf("(3) PIB\n");
@@ -46,10 +56,18 @@ pib_percapita2 = pib2 * 1000000000 / (float)populacao2;
 
         printf("Atributo 2: ");
         scanf("%d", &atributo2);
+        
+        //aqui a função if determina que caso os atributos sejam iguais o programa deve encerrar
+
         if (atributo1 == atributo2)
         {
             printf("\nEscolha atributos diferente!\n");
         }else{
+
+        //Caso os atributos escolhidos sejam diferentes o programa segue, conforme a escolha do usuário.
+        //Aqui além de exibir a escolha do usuário, também é impressa a Carta adversária.
+        //a variável resultado1 guarda a informação sobre qual atributo é o vencedor de acordo com a especificação.
+
             switch (atributo1)
             {
             case 1:
@@ -126,10 +144,14 @@ pib_percapita2 = pib2 * 1000000000 / (float)populacao2;
 
             }        
     break;
+   
+    //o jogo segue conforme a escolha do usuário, nesca casa, Carta 2
+   
     case 'b':
     case 'B':
         printf("Você escolheu a Carta 2\n");
         printf("\nEscolha os Atributos\n");
+        printf("não é permitido escolher atributos iguais\n");
         printf("(1) População\n");
         printf("(2) Área total\n");
         printf("(3) PIB\n");
@@ -228,6 +250,10 @@ pib_percapita2 = pib2 * 1000000000 / (float)populacao2;
                 break;                
     }
     
+    //Por fim para determinar a Carta vencedora é feito o operador lógico.
+    //determinado pela conjunção lógica a vitória é determinada se ambas as variáveis forem verdadeiras,
+    //caso contrário, temos empate ou se as duas preposições forem falsas será o caso de derrota.
+
     if (resultado1 && resultado2)
     {
         printf("\n\n*** Parabéns você ganhou! ***\n\n");
